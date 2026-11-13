@@ -827,5 +827,76 @@ if (contact) {
 })();
 </script>
 
+<style>
+  #wfx-cursor-glow {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(35, 145, 255, 0.20) 0%,
+      rgba(115, 55, 255, 0.09) 35%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transform: translate3d(-500px, -500px, 0);
+    transition: opacity 0.3s ease;
+    will-change: transform;
+  }
+
+  @media (hover: none), (prefers-reduced-motion: reduce) {
+    #wfx-cursor-glow {
+      display: none;
+    }
+  }
+</style>
+
+<div id="wfx-cursor-glow" aria-hidden="true"></div>
+
+<script>
+(() => {
+  if (!window.matchMedia("(hover: hover)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const glow = document.getElementById("wfx-cursor-glow");
+  let x = -500, y = -500;
+  let targetX = -500, targetY = -500;
+  let active = false;
+
+  document.addEventListener("pointermove", (e) => {
+    targetX = e.clientX - 160;
+    targetY = e.clientY - 160;
+    active = true;
+    glow.style.opacity = "1";
+  }, { passive: true });
+
+  document.addEventListener("pointerout", (e) => {
+    if (!e.relatedTarget) {
+      active = false;
+      glow.style.opacity = "0";
+    }
+  });
+
+  function animate() {
+    x += (targetX - x) * 0.12;
+    y += (targetY - y) * 0.12;
+
+    glow.style.transform =
+      `translate3d(${x}px, ${y}px, 0)`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+</script>
+
 </body>
 </html>
