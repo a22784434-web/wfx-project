@@ -1117,6 +1117,95 @@ if (contact) {
 </script>
 <!-- END WFX FIRST CLIENT SECTION -->
 
+<!-- WFX COSMIC PLANET -->
+<style>
+#wfx-cosmic-planet {
+  position: fixed;
+  left: 50%;
+  bottom: -580px;
+  width: 1100px;
+  height: 750px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 35% 0%,
+      rgba(85, 150, 255, .95) 0%,
+      rgba(35, 85, 205, .85) 15%,
+      rgba(55, 25, 125, .9) 38%,
+      rgba(8, 12, 27, 1) 72%
+    );
+
+  box-shadow:
+    0 -8px 35px rgba(35, 130, 255, .65),
+    0 -20px 100px rgba(115, 50, 255, .3),
+    inset 0 25px 65px rgba(75, 145, 255, .3);
+
+  animation: wfxPlanetFloat 9s ease-in-out infinite;
+}
+
+#wfx-cosmic-planet::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 7%;
+  width: 86%;
+  height: 25px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #237bff,
+    #77baff,
+    #b044ff,
+    transparent
+  );
+  filter: blur(13px);
+}
+
+@keyframes wfxPlanetFloat {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-18px);
+  }
+}
+
+@media (max-width: 700px) {
+  #wfx-cosmic-planet {
+    width: 750px;
+    height: 550px;
+    bottom: -430px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wfx-cosmic-planet {
+    animation: none;
+  }
+}
+</style>
+
+<div id="wfx-cosmic-planet" aria-hidden="true"></div>
+<!-- END WFX COSMIC PLANET -->
+
+<style>
+/* Keep the cosmic planet behind website content */
+
+#wfx-cosmic-planet {
+  opacity: 0.85;
+}
+
+body > :not(#wfx-particles):not(#wfx-cursor-glow):not(#wfx-cosmic-planet):not(script):not(style) {
+  position: relative;
+  z-index: 1;
+}
+</style>
+
 
 </body>
 </html>
