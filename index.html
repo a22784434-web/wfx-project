@@ -1,7 +1,6 @@
 
-
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,10 +19,38 @@
       align-items: center;
       padding: 24px 8%;
       border-bottom: 1px solid #23304a;
+      gap: 15px;
     }
-    .logo { color: #54a7ff; font-size: 25px; font-weight: bold; }
-    .hero { text-align: center; padding: 100px 20px; }
-    h1 { font-size: clamp(38px, 7vw, 70px); margin: 0; }
+    .logo {
+      color: #54a7ff;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .language {
+      display: flex;
+      gap: 6px;
+    }
+    .language button {
+      background: #17243a;
+      color: #aab6cc;
+      border: 1px solid #344563;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+    .language button.active {
+      background: #278bff;
+      color: white;
+      border-color: #278bff;
+    }
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+    }
+    h1 {
+      font-size: clamp(38px, 7vw, 70px);
+      margin: 0;
+    }
     h1 span { color: #54a7ff; }
     p { color: #aab6cc; line-height: 1.7; }
     .btn {
@@ -35,7 +62,10 @@
       text-decoration: none;
       margin-top: 20px;
     }
-    section { padding: 40px 8% 90px; text-align: center; }
+    section {
+      padding: 40px 8% 90px;
+      text-align: center;
+    }
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -51,38 +81,94 @@
       width: 280px;
       text-align: left;
     }
-    footer { text-align: center; padding: 30px; color: #8895ac; }
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #8895ac;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">WFX STUDIO</div>
-    <div>Creative Design</div>
+    <div class="language">
+      <button id="enBtn" onclick="setLanguage('en')">🇺🇸 EN</button>
+      <button id="ruBtn" onclick="setLanguage('ru')">🇷🇺 RU</button>
+    </div>
   </header>
+
   <main>
     <div class="hero">
-      <h1>Design That <span>Stands Out.</span></h1>
-      <p>YouTube Thumbnails • Video Editing • Channel Branding</p>
-      <a class="btn" href="#services">Explore Services</a>
+      <h1 data-i18n="headline">Design That <span>Stands Out.</span></h1>
+      <p data-i18n="subtitle">YouTube Thumbnails • Video Editing • Channel Branding</p>
+      <a class="btn" href="#services" data-i18n="explore">Explore Services</a>
     </div>
+
     <section id="services">
-      <h2>My Services</h2>
+      <h2 data-i18n="services">My Services</h2>
       <div class="cards">
         <div class="card">
-          <h3>YouTube Thumbnails</h3>
-          <p>Eye-catching thumbnails for your videos.</p>
+          <h3 data-i18n="thumbnailTitle">YouTube Thumbnails</h3>
+          <p data-i18n="thumbnailDesc">Eye-catching thumbnails for your videos.</p>
         </div>
         <div class="card">
-          <h3>Video Editing</h3>
-          <p>Creative editing for Shorts and videos.</p>
+          <h3 data-i18n="editingTitle">Video Editing</h3>
+          <p data-i18n="editingDesc">Creative editing for Shorts and videos.</p>
         </div>
         <div class="card">
-          <h3>Channel Branding</h3>
-          <p>Avatars, banners and visual identity.</p>
+          <h3 data-i18n="brandingTitle">Channel Branding</h3>
+          <p data-i18n="brandingDesc">Avatars, banners and visual identity.</p>
         </div>
       </div>
     </section>
   </main>
+
   <footer>© 2026 WFX Studio</footer>
+
+  <script>
+    const translations = {
+      en: {
+        headline: 'Design That <span>Stands Out.</span>',
+        subtitle: 'YouTube Thumbnails • Video Editing • Channel Branding',
+        explore: 'Explore Services',
+        services: 'My Services',
+        thumbnailTitle: 'YouTube Thumbnails',
+        thumbnailDesc: 'Eye-catching thumbnails for your videos.',
+        editingTitle: 'Video Editing',
+        editingDesc: 'Creative editing for Shorts and videos.',
+        brandingTitle: 'Channel Branding',
+        brandingDesc: 'Avatars, banners and visual identity.'
+      },
+      ru: {
+        headline: 'Дизайн, который <span>выделяется.</span>',
+        subtitle: 'Превью для YouTube • Монтаж видео • Оформление каналов',
+        explore: 'Посмотреть услуги',
+        services: 'Мои услуги',
+        thumbnailTitle: 'Превью для YouTube',
+        thumbnailDesc: 'Яркие и привлекательные обложки для видео.',
+        editingTitle: 'Монтаж видео',
+        editingDesc: 'Креативный монтаж Shorts и обычных видео.',
+        brandingTitle: 'Оформление канала',
+        brandingDesc: 'Аватарки, баннеры и фирменный стиль.'
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!translations[lang]) lang = 'en';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        el.innerHTML = translations[lang][key];
+      });
+
+      document.documentElement.lang = lang;
+      document.getElementById('enBtn').classList.toggle('active', lang === 'en');
+      document.getElementById('ruBtn').classList.toggle('active', lang === 'ru');
+
+      localStorage.setItem('wfx-language', lang);
+    }
+
+    setLanguage(localStorage.getItem('wfx-language') || 'en');
+  </script>
 </body>
 </html>
