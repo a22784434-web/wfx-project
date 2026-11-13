@@ -252,6 +252,62 @@
         max-width: 360px;
       }
     }
+    
+/* WFX Studio — Scroll Animations */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.45s ease-out;
+}
+
+.reveal-left {
+  transform: translateX(-65px);
+}
+
+.reveal-right {
+  transform: translateX(65px);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.contact-card h3,
+.contact-card .username,
+.contact-card .btn {
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.contact-card.reveal:not(.visible) h3,
+.contact-card.reveal:not(.visible) .username,
+.contact-card.reveal:not(.visible) .btn {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.contact-card.visible h3,
+.contact-card.visible .username,
+.contact-card.visible .btn {
+  transition-delay: 0.12s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .contact-card h3,
+  .contact-card .username,
+  .contact-card .btn {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
   </style>
 </head>
 
@@ -455,6 +511,46 @@
 
     setLanguage(savedLanguage);
   </script>
+
+<script>
+const contact = document.querySelector("#contact");
+
+if (contact) {
+  const title = contact.querySelector("h2");
+  const description = contact.querySelector("p");
+  const cards = contact.querySelectorAll(".contact-card");
+
+  title.classList.add("reveal");
+  description.classList.add("reveal");
+
+  cards.forEach((card, index) => {
+    card.classList.add(
+      "reveal",
+      index === 0 ? "reveal-left" : "reveal-right"
+    );
+  });
+
+  const elements = contact.querySelectorAll(".reveal");
+
+  if (
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach(element => observer.observe(element));
+  } else {
+    elements.forEach(element => element.classList.add("visible"));
+  }
+}
+</script>
 
 </body>
 </html>
