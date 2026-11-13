@@ -386,6 +386,24 @@ footer {
   }
 }
 
+
+/* WFX portfolio — KAVA Coffee House */
+#portfolio { position: relative; z-index: 1; }
+.portfolio-intro { max-width: 650px; margin: 0 auto 30px; }
+.portfolio-project { max-width: 1050px; margin: 34px auto 0; display: grid; grid-template-columns: 1.2fr 1fr; overflow: hidden; text-align: left; background: rgba(17,27,46,.94); border: 1px solid #2a4165; border-radius: 22px; box-shadow: 0 16px 55px rgba(0,0,0,.25); transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.portfolio-project:hover { transform: translateY(-6px); border-color: #54a7ff; box-shadow: 0 20px 60px rgba(39,139,255,.18); }
+.portfolio-preview { position: relative; min-height: 360px; overflow: hidden; background: linear-gradient(135deg,#161b24,#4a352b); }
+.portfolio-preview iframe { position: absolute; inset: 0; width: 200%; height: 200%; border: 0; transform: scale(.5); transform-origin: top left; pointer-events: none; }
+.portfolio-preview::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-right: 1px solid rgba(255,255,255,.06); }
+.portfolio-details { padding: clamp(26px,4vw,46px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.portfolio-tag { color: #9ccaff; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.portfolio-details h3 { font-size: clamp(25px,3vw,36px); margin: 16px 0 8px; }
+.portfolio-details p { margin: 0 0 20px; }
+.portfolio-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.portfolio-tech span { font-size: 12px; color: #b8d7ff; border: 1px solid #344563; background: #17243a; padding: 7px 11px; border-radius: 99px; }
+@media(max-width:750px) { .portfolio-project { grid-template-columns: 1fr; } .portfolio-preview { min-height: 260px; } .portfolio-details { padding: 28px; } }
+@media(prefers-reduced-motion:reduce) { .portfolio-project { transition: none; } .portfolio-project:hover { transform: none; } }
+
   </style>
 </head>
 
@@ -397,6 +415,7 @@ footer {
     <nav aria-label="Main navigation">
       <a href="#home" data-i18n="navHome">Главная</a>
       <a href="#services" data-i18n="navServices">Услуги</a>
+      <a href="#portfolio" data-i18n="navPortfolio">Портфолио</a>
       <a href="#contact" data-i18n="navContact">Связь</a>
 
       <div class="language">
@@ -459,6 +478,24 @@ footer {
       </div>
     </section>
 
+
+    <section id="portfolio" aria-labelledby="portfolio-title">
+      <h2 id="portfolio-title" data-i18n="portfolioTitle">Мои проекты</h2>
+      <p class="portfolio-intro" data-i18n="portfolioIntro">Примеры сайтов, которые я создаю для бизнеса. Каждый проект — демонстрация дизайна и возможностей.</p>
+      <article class="portfolio-project">
+        <div class="portfolio-preview">
+          <iframe src="https://a22784434-web.github.io/kava-coffee/" title="KAVA Coffee House — предпросмотр" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        </div>
+        <div class="portfolio-details">
+          <span class="portfolio-tag" data-i18n="portfolioTag">Демонстрационный проект · 2026</span>
+          <h3>KAVA Coffee House</h3>
+          <p data-i18n="portfolioDesc">Современный сайт для кофейни: атмосферный дизайн, адаптация под телефон, меню и переключение светлой и тёмной темы.</p>
+          <div class="portfolio-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span></div>
+          <a class="btn" href="https://a22784434-web.github.io/kava-coffee/" target="_blank" rel="noopener noreferrer" data-i18n="portfolioButton">Посмотреть сайт ↗</a>
+        </div>
+      </article>
+    </section>
+
     <section id="contact" class="contact-section">
       <h2 data-i18n="contactTitle">Свяжитесь со мной</h2>
 
@@ -512,6 +549,12 @@ footer {
       ru: {
         navHome: "Главная",
         navServices: "Услуги",
+        navPortfolio: "Портфолио",
+        portfolioTitle: "Мои проекты",
+        portfolioIntro: "Примеры сайтов, которые я создаю для бизнеса. Каждый проект — демонстрация дизайна и возможностей.",
+        portfolioTag: "Демонстрационный проект · 2026",
+        portfolioDesc: "Современный сайт для кофейни: атмосферный дизайн, адаптация под телефон, меню и переключение светлой и тёмной темы.",
+        portfolioButton: "Посмотреть сайт ↗",
         navContact: "Связь",
         headline: "Дизайн, который <span>выделяется.</span>",
         subtitle: "Превью для YouTube • Монтаж видео • Оформление каналов",
@@ -537,6 +580,12 @@ websiteDesc: "Создаю современные сайты для бизнес
       en: {
         navHome: "Home",
         navServices: "Services",
+        navPortfolio: "Portfolio",
+        portfolioTitle: "My Projects",
+        portfolioIntro: "Examples of websites I create for businesses. Each project showcases design and functionality.",
+        portfolioTag: "Demo project · 2026",
+        portfolioDesc: "A modern coffee shop website with an atmospheric design, mobile-friendly layout, menu, and light/dark theme toggle.",
+        portfolioButton: "View Website ↗",
         navContact: "Contact",
         headline: "Design That <span>Stands Out.</span>",
         subtitle: "YouTube Thumbnails • Video Editing • Channel Branding",
@@ -660,6 +709,10 @@ if (contact) {
     ".hero p",
     ".hero .btn",
     "#services h2",
+    "#portfolio h2",
+    "#portfolio .portfolio-intro",
+    "#portfolio .portfolio-details h3",
+    "#portfolio .portfolio-details p",
     "#services .card h3",
     "#services .card p",
     "#contact h2",
@@ -1088,9 +1141,9 @@ if (contact) {
       Здесь может быть твой проект
     </h2>
 
-    <p data-ru="Портфолио пока пустует, но именно твой заказ может стать первым. Давай создадим что-то крутое вместе!"
-       data-en="The portfolio is just getting started. Your project could be the first. Let's create something amazing together!">
-      Портфолио пока пустует, но именно твой заказ может стать первым. Давай создадим что-то крутое вместе!
+    <p data-ru="Уже есть первый демонстрационный проект. Твой заказ может стать первым клиентским проектом — давай создадим что-то крутое вместе!"
+       data-en="My first demo project is live. Your order could become my first client project. Let's create something amazing together!">
+      Уже есть первый демонстрационный проект. Твой заказ может стать первым клиентским проектом — давай создадим что-то крутое вместе!
     </p>
 
     <a class="wfx-first-button"
