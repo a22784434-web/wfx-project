@@ -1,71 +1,144 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080c17">
+  <meta name="description" content="WFX Studio — YouTube thumbnails, video editing and channel branding.">
   <title>WFX Studio — Creative Design</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: #080c17;
-      color: white;
+      color: #ffffff;
       font-family: Arial, sans-serif;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 8%;
-      border-bottom: 1px solid #23304a;
-      gap: 15px;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 22px 8%;
+      background: #0d1424;
+      border-bottom: 1px solid #253653;
     }
+
     .logo {
       color: #54a7ff;
-      font-size: 25px;
-      font-weight: bold;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    nav a {
+      color: #c5d2e6;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color .2s;
+    }
+
+    nav a:hover {
+      color: #54a7ff;
+    }
+
     .language {
       display: flex;
-      gap: 6px;
+      gap: 5px;
     }
+
     .language button {
+      padding: 9px 12px;
       background: #17243a;
-      color: #aab6cc;
       border: 1px solid #344563;
       border-radius: 8px;
-      padding: 10px 14px;
+      color: #aab6cc;
       cursor: pointer;
     }
+
     .language button.active {
       background: #278bff;
-      color: white;
       border-color: #278bff;
+      color: white;
     }
+
     .hero {
       text-align: center;
-      padding: 100px 20px;
+      padding: 110px 20px 100px;
+      background: radial-gradient(
+        ellipse at top,
+        #142a4d 0%,
+        #080c17 65%
+      );
     }
+
     h1 {
       font-size: clamp(38px, 7vw, 70px);
       margin: 0;
+      line-height: 1.15;
     }
-    h1 span { color: #54a7ff; }
-    p { color: #aab6cc; line-height: 1.7; }
+
+    h1 span {
+      color: #54a7ff;
+    }
+
+    p {
+      color: #aab6cc;
+      line-height: 1.7;
+    }
+
+    .hero p {
+      margin: 25px auto;
+      max-width: 650px;
+    }
+
     .btn {
       display: inline-block;
       background: #278bff;
       color: white;
-      padding: 16px 30px;
-      border-radius: 12px;
+      border: none;
+      padding: 15px 28px;
+      border-radius: 11px;
       text-decoration: none;
-      margin-top: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
     }
+
+    .btn:hover {
+      background: #54a7ff;
+      transform: translateY(-3px);
+    }
+
     section {
-      padding: 40px 8% 90px;
+      padding: 75px 8%;
       text-align: center;
+      scroll-margin-top: 25px;
     }
+
+    h2 {
+      font-size: clamp(28px, 5vw, 40px);
+      margin: 0 0 18px;
+    }
+
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -73,6 +146,7 @@
       gap: 20px;
       margin-top: 35px;
     }
+
     .card {
       background: #111b2e;
       border: 1px solid #253653;
@@ -80,45 +154,208 @@
       padding: 30px;
       width: 280px;
       text-align: left;
+      transition: transform .2s, border-color .2s;
     }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #278bff;
+    }
+
+    .card h3 {
+      color: #ffffff;
+    }
+
+    .contact-section {
+      background: #0b1221;
+      border-top: 1px solid #1d2a43;
+    }
+
+    .contact-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .contact-card {
+      width: 290px;
+      padding: 32px 22px;
+      background: #15233b;
+      border: 1px solid #2a4165;
+      border-radius: 18px;
+      transition: transform .2s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .contact-icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h3 {
+      font-size: 23px;
+      margin: 12px 0;
+    }
+
+    .username {
+      color: #aab6cc;
+      margin-bottom: 22px;
+    }
+
+    .discord-btn {
+      background: #5865f2;
+    }
+
+    .discord-btn:hover {
+      background: #7480ff;
+    }
+
+    .status {
+      min-height: 20px;
+      margin-top: 12px;
+      color: #90c7ff;
+      font-size: 13px;
+    }
+
     footer {
+      padding: 32px 20px;
       text-align: center;
-      padding: 30px;
+      border-top: 1px solid #23304a;
       color: #8895ac;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 80px 18px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .card, .contact-card {
+        width: 100%;
+        max-width: 360px;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <div class="logo">WFX STUDIO</div>
-    <div class="language">
-      <button id="enBtn" onclick="setLanguage('en')">🇺🇸 EN</button>
-      <button id="ruBtn" onclick="setLanguage('ru')">🇷🇺 RU</button>
-    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="#home" data-i18n="navHome">Главная</a>
+      <a href="#services" data-i18n="navServices">Услуги</a>
+      <a href="#contact" data-i18n="navContact">Связь</a>
+
+      <div class="language">
+        <button id="ruBtn" type="button" onclick="setLanguage('ru')">RU</button>
+        <button id="enBtn" type="button" onclick="setLanguage('en')">EN</button>
+      </div>
+    </nav>
   </header>
 
   <main>
-    <div class="hero">
-      <h1 data-i18n="headline">Design That <span>Stands Out.</span></h1>
-      <p data-i18n="subtitle">YouTube Thumbnails • Video Editing • Channel Branding</p>
-      <a class="btn" href="#services" data-i18n="explore">Explore Services</a>
+    <div class="hero" id="home">
+      <h1 data-i18n="headline">
+        Дизайн, который <span>выделяется.</span>
+      </h1>
+
+      <p data-i18n="subtitle">
+        Превью для YouTube • Монтаж видео • Оформление каналов
+      </p>
+
+      <a class="btn" href="#services" data-i18n="explore">
+        Посмотреть услуги
+      </a>
     </div>
 
     <section id="services">
-      <h2 data-i18n="services">My Services</h2>
+      <h2 data-i18n="services">Мои услуги</h2>
+
       <div class="cards">
         <div class="card">
-          <h3 data-i18n="thumbnailTitle">YouTube Thumbnails</h3>
-          <p data-i18n="thumbnailDesc">Eye-catching thumbnails for your videos.</p>
+          <h3 data-i18n="thumbnailTitle">Превью для YouTube</h3>
+          <p data-i18n="thumbnailDesc">
+            Яркие и привлекательные обложки для видео.
+          </p>
         </div>
+
         <div class="card">
-          <h3 data-i18n="editingTitle">Video Editing</h3>
-          <p data-i18n="editingDesc">Creative editing for Shorts and videos.</p>
+          <h3 data-i18n="editingTitle">Монтаж видео</h3>
+          <p data-i18n="editingDesc">
+            Креативный монтаж Shorts и обычных видео.
+          </p>
         </div>
+
         <div class="card">
-          <h3 data-i18n="brandingTitle">Channel Branding</h3>
-          <p data-i18n="brandingDesc">Avatars, banners and visual identity.</p>
+          <h3 data-i18n="brandingTitle">Оформление канала</h3>
+          <p data-i18n="brandingDesc">
+            Аватарки, баннеры и фирменный стиль.
+          </p>
         </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <h2 data-i18n="contactTitle">Свяжитесь со мной</h2>
+
+      <p data-i18n="contactDesc">
+        Есть вопросы или хотите заказать дизайн? Напишите мне!
+      </p>
+
+      <div class="contact-cards">
+
+        <div class="contact-card">
+          <div class="contact-icon">✈️</div>
+          <h3>Telegram</h3>
+          <p class="username">@maksimkioo</p>
+
+          <a
+            class="btn"
+            href="https://t.me/maksimkioo"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="telegramButton"
+          >
+            Написать
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <h3>Discord</h3>
+          <p class="username">women_x</p>
+
+          <button
+            class="btn discord-btn"
+            type="button"
+            onclick="copyDiscord()"
+            data-i18n="discordButton"
+          >
+            Скопировать ник
+          </button>
+
+          <div class="status" id="copyStatus" role="status" aria-live="polite"></div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -127,48 +364,97 @@
 
   <script>
     const translations = {
-      en: {
-        headline: 'Design That <span>Stands Out.</span>',
-        subtitle: 'YouTube Thumbnails • Video Editing • Channel Branding',
-        explore: 'Explore Services',
-        services: 'My Services',
-        thumbnailTitle: 'YouTube Thumbnails',
-        thumbnailDesc: 'Eye-catching thumbnails for your videos.',
-        editingTitle: 'Video Editing',
-        editingDesc: 'Creative editing for Shorts and videos.',
-        brandingTitle: 'Channel Branding',
-        brandingDesc: 'Avatars, banners and visual identity.'
-      },
       ru: {
-        headline: 'Дизайн, который <span>выделяется.</span>',
-        subtitle: 'Превью для YouTube • Монтаж видео • Оформление каналов',
-        explore: 'Посмотреть услуги',
-        services: 'Мои услуги',
-        thumbnailTitle: 'Превью для YouTube',
-        thumbnailDesc: 'Яркие и привлекательные обложки для видео.',
-        editingTitle: 'Монтаж видео',
-        editingDesc: 'Креативный монтаж Shorts и обычных видео.',
-        brandingTitle: 'Оформление канала',
-        brandingDesc: 'Аватарки, баннеры и фирменный стиль.'
+        navHome: "Главная",
+        navServices: "Услуги",
+        navContact: "Связь",
+        headline: "Дизайн, который <span>выделяется.</span>",
+        subtitle: "Превью для YouTube • Монтаж видео • Оформление каналов",
+        explore: "Посмотреть услуги",
+        services: "Мои услуги",
+        thumbnailTitle: "Превью для YouTube",
+        thumbnailDesc: "Яркие и привлекательные обложки для видео.",
+        editingTitle: "Монтаж видео",
+        editingDesc: "Креативный монтаж Shorts и обычных видео.",
+        brandingTitle: "Оформление канала",
+        brandingDesc: "Аватарки, баннеры и фирменный стиль.",
+        contactTitle: "Свяжитесь со мной",
+        contactDesc: "Есть вопросы или хотите заказать дизайн? Напишите мне!",
+        telegramButton: "Написать",
+        discordButton: "Скопировать ник",
+        copied: "Ник скопирован!",
+        copyError: "Не удалось скопировать. Ник: women_x"
+      },
+      en: {
+        navHome: "Home",
+        navServices: "Services",
+        navContact: "Contact",
+        headline: "Design That <span>Stands Out.</span>",
+        subtitle: "YouTube Thumbnails • Video Editing • Channel Branding",
+        explore: "Explore Services",
+        services: "My Services",
+        thumbnailTitle: "YouTube Thumbnails",
+        thumbnailDesc: "Eye-catching thumbnails for your videos.",
+        editingTitle: "Video Editing",
+        editingDesc: "Creative editing for Shorts and videos.",
+        brandingTitle: "Channel Branding",
+        brandingDesc: "Avatars, banners and visual identity.",
+        contactTitle: "Get in Touch",
+        contactDesc: "Have questions or want to order a design? Message me!",
+        telegramButton: "Message Me",
+        discordButton: "Copy Username",
+        copied: "Username copied!",
+        copyError: "Could not copy. Username: women_x"
       }
     };
 
-    function setLanguage(lang) {
-      if (!translations[lang]) lang = 'en';
+    let currentLanguage = "ru";
 
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        el.innerHTML = translations[lang][key];
+    function setLanguage(lang) {
+      if (!translations[lang]) lang = "ru";
+
+      currentLanguage = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        element.innerHTML = translations[lang][key];
       });
 
       document.documentElement.lang = lang;
-      document.getElementById('enBtn').classList.toggle('active', lang === 'en');
-      document.getElementById('ruBtn').classList.toggle('active', lang === 'ru');
 
-      localStorage.setItem('wfx-language', lang);
+      document.getElementById("ruBtn").classList.toggle("active", lang === "ru");
+      document.getElementById("enBtn").classList.toggle("active", lang === "en");
+
+      document.getElementById("copyStatus").textContent = "";
+
+      try {
+        localStorage.setItem("wfx-language", lang);
+      } catch (error) {
+        // Site still works if storage is unavailable.
+      }
     }
 
-    setLanguage(localStorage.getItem('wfx-language') || 'en');
+    async function copyDiscord() {
+      const status = document.getElementById("copyStatus");
+
+      try {
+        await navigator.clipboard.writeText("women_x");
+        status.textContent = translations[currentLanguage].copied;
+      } catch (error) {
+        status.textContent = translations[currentLanguage].copyError;
+      }
+    }
+
+    let savedLanguage = "ru";
+
+    try {
+      savedLanguage = localStorage.getItem("wfx-language") || "ru";
+    } catch (error) {
+      // Use the default language.
+    }
+
+    setLanguage(savedLanguage);
   </script>
+
 </body>
 </html>
