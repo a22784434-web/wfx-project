@@ -640,5 +640,147 @@ if (contact) {
 })();
 </script>
 
+<style>
+  #wfx-particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  body {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(ellipse at 15% 20%,
+        #112d54 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 75%,
+        #36153f 0%, transparent 45%),
+      #080c17;
+    background-attachment: fixed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #wfx-particles {
+      display: none;
+    }
+  }
+</style>
+
+<canvas id="wfx-particles" aria-hidden="true"></canvas>
+
+<script>
+(() => {
+  const canvas = document.getElementById("wfx-particles");
+  const ctx = canvas.getContext("2d");
+
+  if (!ctx || window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches) return;
+
+  let particles = [];
+  let width, height;
+  let animationId;
+
+  const mouse = { x: -1000, y: -1000 };
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+
+    const count = Math.min(
+      85,
+      Math.floor(width * height / 15000)
+    );
+
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radius: Math.random() * 1.8 + 0.6,
+      color: Math.random() > 0.5
+        ? "55, 170, 255"
+        : "255, 65, 190"
+    }));
+  }
+
+  window.addEventListener("resize", resize);
+
+  window.addEventListener("pointermove", e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }, { passive: true });
+
+  window.addEventListener("pointerleave", () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const p of particles) {
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const distance = Math.hypot(dx, dy);
+
+      if (distance < 130 && distance > 0) {
+        const force = (130 - distance) / 130;
+        p.x += (dx / distance) * force * 1.8;
+        p.y += (dy / distance) * force * 1.8;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      const glow = ctx.createRadialGradient(
+        p.x, p.y, 0,
+        p.x, p.y, p.radius * 7
+      );
+
+      glow.addColorStop(
+        0, `rgba(${p.color}, 0.85)`
+      );
+      glow.addColorStop(
+        0.3, `rgba(${p.color}, 0.25)`
+      );
+      glow.addColorStop(
+        1, `rgba(${p.color}, 0)`
+      );
+
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(
+        p.x, p.y, p.radius * 7,
+        0, Math.PI * 2
+      );
+      ctx.fill();
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  resize();
+  animate();
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId);
+    } else {
+      cancelAnimationFrame(animationId);
+      animate();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
