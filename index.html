@@ -308,6 +308,38 @@
   }
 }
 
+/* Animations for all website text */
+
+.text-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.45s ease-out,
+    transform 0.45s ease-out;
+}
+
+.text-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slight delay for descriptions */
+.text-reveal.delay-1 {
+  transition-delay: 0.08s;
+}
+
+.text-reveal.delay-2 {
+  transition-delay: 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
   </style>
 </head>
 
@@ -550,6 +582,61 @@ if (contact) {
     elements.forEach(element => element.classList.add("visible"));
   }
 }
+</script>
+
+<script>
+(function () {
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  const selectors = [
+    ".hero h1",
+    ".hero p",
+    ".hero .btn",
+    "#services h2",
+    "#services .card h3",
+    "#services .card p",
+    "#contact h2",
+    "#contact > p",
+    ".contact-card h3",
+    ".contact-card .username",
+    "footer"
+  ];
+
+  const elements = document.querySelectorAll(
+    selectors.join(", ")
+  );
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  elements.forEach((element, index) => {
+    element.classList.add("text-reveal");
+
+    if (index % 3 === 1) {
+      element.classList.add("delay-1");
+    }
+
+    if (index % 3 === 2) {
+      element.classList.add("delay-2");
+    }
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  elements.forEach(element => observer.observe(element));
+})();
 </script>
 
 </body>
