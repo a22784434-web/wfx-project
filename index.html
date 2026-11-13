@@ -898,5 +898,82 @@ if (contact) {
 })();
 </script>
 
+<style>
+/* WFX STUDIO — 3D CARDS */
+
+.card,
+.contact-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover,
+.contact-card:hover {
+  box-shadow:
+    0 15px 45px rgba(0, 120, 255, 0.2),
+    0 0 30px rgba(170, 60, 255, 0.15);
+}
+
+.card h3,
+.contact-card h3 {
+  transform: translateZ(20px);
+}
+
+.card p,
+.contact-card p {
+  transform: translateZ(12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .contact-card {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+</style>
+
+<script>
+(() => {
+  if (!window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  ).matches) return;
+
+  if (window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches) return;
+
+  const cards = document.querySelectorAll(
+    ".card, .contact-card"
+  );
+
+  cards.forEach(card => {
+    card.addEventListener("pointermove", event => {
+      const rect = card.getBoundingClientRect();
+
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+
+      const rotateY = (x - 0.5) * 14;
+      const rotateX = (0.5 - y) * 14;
+
+      card.style.transform =
+        `perspective(900px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         scale(1.035)`;
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
