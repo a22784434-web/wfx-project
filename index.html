@@ -975,317 +975,148 @@ if (contact) {
 })();
 </script>
 
-<!-- WFX STUDIO PREMIUM PORTFOLIO -->
+<!-- WFX FIRST CLIENT SECTION -->
 <style>
-#wfx-portfolio {
-  padding: 100px 20px;
+#wfx-first-client {
   position: relative;
   z-index: 1;
-  background: transparent;
-  color: #fff;
-}
-
-.wfx-portfolio-inner {
-  max-width: 1150px;
-  margin: auto;
-}
-
-.wfx-portfolio-head {
+  padding: 100px 20px;
   text-align: center;
-  margin-bottom: 45px;
+  background: transparent;
 }
 
-.wfx-portfolio-kicker {
-  color: #56aaff;
-  font-size: 13px;
+.wfx-first-box {
+  max-width: 850px;
+  margin: auto;
+  padding: 65px 30px;
+  border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 35, 65, .94),
+    rgba(9, 15, 31, .94)
+  );
+  border: 1px solid rgba(60, 145, 255, .35);
+  box-shadow: 0 0 60px rgba(40, 100, 255, .10);
+  transition: box-shadow .3s ease;
+}
+
+.wfx-first-box:hover {
+  box-shadow:
+    0 0 45px rgba(40, 130, 255, .22),
+    0 0 75px rgba(155, 60, 255, .12);
+}
+
+.wfx-first-icon {
+  font-size: 55px;
+  margin-bottom: 20px;
+}
+
+.wfx-first-label {
+  color: #64b5ff;
+  font-size: 12px;
   letter-spacing: 3px;
   font-weight: 700;
 }
 
-.wfx-portfolio-head h2 {
-  font-size: clamp(32px, 5vw, 50px);
-  margin: 14px 0;
+.wfx-first-box h2 {
   color: #fff;
+  font-size: clamp(30px, 5vw, 48px);
+  margin: 20px 0;
 }
 
-.wfx-portfolio-head p {
-  color: #9baac3;
+.wfx-first-box p {
+  color: #a4b3cd;
+  line-height: 1.8;
+  font-size: 17px;
+  max-width: 600px;
+  margin: 0 auto 30px;
 }
 
-.wfx-project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.wfx-project {
-  min-width: 0;
-  background: linear-gradient(
-    145deg,
-    rgba(22, 35, 63, .95),
-    rgba(10, 16, 32, .95)
-  );
-  border: 1px solid rgba(70, 145, 255, .25);
-  border-radius: 22px;
-  padding: 14px;
-  overflow: hidden;
-  transform-style: preserve-3d;
-  transition: transform .2s ease, box-shadow .3s ease;
-  will-change: transform;
-}
-
-.wfx-project:hover {
-  box-shadow:
-    0 18px 55px rgba(35, 115, 255, .22),
-    0 0 30px rgba(175, 55, 255, .13);
-}
-
-.wfx-project-art {
-  height: 185px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 25% 25%, #296cdb, transparent 55%),
-    radial-gradient(circle at 80% 80%, #a234d9, transparent 50%),
-    #101a35;
-}
-
-.wfx-project-art span {
-  font-size: 64px;
-  filter: drop-shadow(0 0 20px #4c9cff);
-}
-
-.wfx-project:nth-child(2) .wfx-project-art {
-  background:
-    radial-gradient(circle at 75% 20%, #8c3ff1, transparent 55%),
-    radial-gradient(circle at 20% 80%, #176bc5, transparent 55%),
-    #10152c;
-}
-
-.wfx-project:nth-child(3) .wfx-project-art {
-  background:
-    radial-gradient(circle at 50% 40%, #155cce, transparent 60%),
-    radial-gradient(circle at 85% 75%, #e02bc0, transparent 50%),
-    #10152c;
-}
-
-.wfx-project-info {
-  padding: 18px 8px 8px;
-}
-
-.wfx-project-tag {
-  font-size: 11px;
-  color: #69b5ff;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.wfx-project-info h3 {
-  font-size: 21px;
-  margin: 10px 0;
-  color: #fff;
-}
-
-.wfx-project-info p {
-  color: #9baac3;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.wfx-project-btn {
+.wfx-first-button {
   display: inline-block;
-  margin-top: 16px;
-  padding: 11px 19px;
-  border-radius: 10px;
-  color: #fff;
+  padding: 16px 28px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
   text-decoration: none;
-  font-weight: 600;
   background: linear-gradient(110deg, #147cff, #7d42ef);
-  transition: filter .2s ease;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.wfx-project-btn:hover {
-  filter: brightness(1.2);
-}
-
-@media (max-width: 850px) {
-  .wfx-project-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .wfx-project-art {
-    height: 220px;
-  }
+.wfx-first-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(55, 115, 255, .35);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wfx-project {
+  .wfx-first-box,
+  .wfx-first-button {
     transition: none;
-    will-change: auto;
   }
 }
 </style>
 
-<section id="wfx-portfolio">
-  <div class="wfx-portfolio-inner">
-    <div class="wfx-portfolio-head">
-      <div class="wfx-portfolio-kicker">
-        WFX STUDIO / SELECTED WORK
-      </div>
-      <h2 data-wfx-ru="Мои работы"
-          data-wfx-en="My Projects">
-        Мои работы
-      </h2>
-      <p data-wfx-ru="Демонстрационные концепты дизайна"
-         data-wfx-en="Demo design concepts">
-        Демонстрационные концепты дизайна
-      </p>
+<section id="wfx-first-client">
+  <div class="wfx-first-box">
+    <div class="wfx-first-icon">✦</div>
+
+    <div class="wfx-first-label">
+      WFX STUDIO / FIRST PROJECT
     </div>
 
-    <div class="wfx-project-grid">
+    <h2 data-ru="Здесь может быть твой проект"
+        data-en="Your Project Could Be Here">
+      Здесь может быть твой проект
+    </h2>
 
-      <article class="wfx-project">
-        <div class="wfx-project-art">
-          <span>◆</span>
-        </div>
-        <div class="wfx-project-info">
-          <div class="wfx-project-tag">Gaming / Concept</div>
-          <h3>Minecraft Thumbnail</h3>
-          <p data-wfx-ru="Концепт игрового превью для YouTube."
-             data-wfx-en="Gaming YouTube thumbnail concept.">
-            Концепт игрового превью для YouTube.
-          </p>
-          <a class="wfx-project-btn"
-             href="https://t.me/maksimkioo"
-             target="_blank" rel="noopener noreferrer"
-             data-wfx-ru="Заказать похожее"
-             data-wfx-en="Order Similar">
-            Заказать похожее
-          </a>
-        </div>
-      </article>
+    <p data-ru="Портфолио пока пустует, но именно твой заказ может стать первым. Давай создадим что-то крутое вместе!"
+       data-en="The portfolio is just getting started. Your project could be the first. Let's create something amazing together!">
+      Портфолио пока пустует, но именно твой заказ может стать первым. Давай создадим что-то крутое вместе!
+    </p>
 
-      <article class="wfx-project">
-        <div class="wfx-project-art">
-          <span>▶</span>
-        </div>
-        <div class="wfx-project-info">
-          <div class="wfx-project-tag">YouTube / Concept</div>
-          <h3>YouTube Facts</h3>
-          <p data-wfx-ru="Концепт обложки для видео с фактами."
-             data-wfx-en="Thumbnail concept for a facts video.">
-            Концепт обложки для видео с фактами.
-          </p>
-          <a class="wfx-project-btn"
-             href="https://t.me/maksimkioo"
-             target="_blank" rel="noopener noreferrer"
-             data-wfx-ru="Заказать похожее"
-             data-wfx-en="Order Similar">
-            Заказать похожее
-          </a>
-        </div>
-      </article>
-
-      <article class="wfx-project">
-        <div class="wfx-project-art">
-          <span>✦</span>
-        </div>
-        <div class="wfx-project-info">
-          <div class="wfx-project-tag">Branding / Concept</div>
-          <h3>Channel Branding</h3>
-          <p data-wfx-ru="Концепт оформления YouTube-канала."
-             data-wfx-en="YouTube channel branding concept.">
-            Концепт оформления YouTube-канала.
-          </p>
-          <a class="wfx-project-btn"
-             href="https://t.me/maksimkioo"
-             target="_blank" rel="noopener noreferrer"
-             data-wfx-ru="Заказать похожее"
-             data-wfx-en="Order Similar">
-            Заказать похожее
-          </a>
-        </div>
-      </article>
-
-    </div>
+    <a class="wfx-first-button"
+       href="https://t.me/maksimkioo"
+       target="_blank"
+       rel="noopener noreferrer"
+       data-ru="Стать первым клиентом ↗"
+       data-en="Become My First Client ↗">
+      Стать первым клиентом ↗
+    </a>
   </div>
 </section>
 
 <script>
 (() => {
-  const portfolio = document.getElementById("wfx-portfolio");
-  if (!portfolio) return;
-
-  // Place before contact section when possible.
+  const section = document.getElementById("wfx-first-client");
   const contact = document.querySelector(
-    '#contact, #contacts, .contact-section'
+    "#contact, #contacts, .contact-section"
   );
 
-  if (contact && contact !== portfolio) {
-    contact.before(portfolio);
+  if (contact && section) {
+    contact.before(section);
   }
 
-  // Interactive 3D tilt.
-  if (window.matchMedia(
-    "(hover: hover) and (pointer: fine)"
-  ).matches && !window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches) {
-    document.querySelectorAll(".wfx-project").forEach(card => {
-      card.addEventListener("pointermove", e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
+  function updateLanguage() {
+    const english = document.documentElement.lang
+      .toLowerCase().startsWith("en");
 
-        card.style.transform =
-          `perspective(900px)
-           rotateX(${(0.5 - y) * 12}deg)
-           rotateY(${(x - 0.5) * 12}deg)
-           scale(1.025)`;
-      });
-
-      card.addEventListener("pointerleave", () => {
-        card.style.transform = "";
-      });
-    });
-  }
-
-  // RU / EN support.
-  function updatePortfolioLanguage() {
-    const english =
-      document.documentElement.lang.toLowerCase().startsWith("en") ||
-      document.querySelector(
-        '[data-lang="en"].active, .lang-btn[data-lang="en"].active'
-      ) !== null;
-
-    portfolio.querySelectorAll("[data-wfx-ru]").forEach(el => {
+    section.querySelectorAll("[data-ru][data-en]").forEach(el => {
       el.textContent = english
-        ? el.dataset.wfxEn
-        : el.dataset.wfxRu;
+        ? el.dataset.en
+        : el.dataset.ru;
     });
   }
 
-  updatePortfolioLanguage();
+  updateLanguage();
 
-  new MutationObserver(updatePortfolioLanguage).observe(
+  new MutationObserver(updateLanguage).observe(
     document.documentElement,
     { attributes: true, attributeFilter: ["lang"] }
   );
-
-  document.querySelectorAll(
-    '[data-lang="ru"], [data-lang="en"], .lang-btn'
-  ).forEach(btn => {
-    btn.addEventListener("click", () => {
-      requestAnimationFrame(updatePortfolioLanguage);
-    });
-  });
 })();
 </script>
-<!-- END WFX PORTFOLIO -->
+<!-- END WFX FIRST CLIENT SECTION -->
+
 
 </body>
 </html>
